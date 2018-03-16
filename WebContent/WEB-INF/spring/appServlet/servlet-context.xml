@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven/>
+
+	<!-- 
+	<beans:bean id="propertyHolder" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<beans:property name="locations">
+			<beans:list>
+				<beans:value>classpath:/runtime/config/connections/connections-${spring.profiles.active}.properties</beans:value>
+				<beans:value>classpath:/runtime/config/url/url-${spring.profiles.active}.properties</beans:value>
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+	 -->
+	 
+	 
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<resources location="/WEB-INF/views/css/" mapping="/css/**"/>
+	<resources location="/WEB-INF/views/images/" mapping="/images/**"/>
+	<resources location="/WEB-INF/views/js/" mapping="/js/**"/>
+	<resources location="/WEB-INF/views/font/" mapping="/font/**"/>
+	<resources location="/WEB-INF/views/html/" mapping="/html/**"/>
+	<resources location="/WEB-INF/views/common/" mapping="/common/**"/>
+	
+	<!-- JSON Support -->
+    <beans:bean name="viewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
+    <beans:bean name="jsonTemplate" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />	
+	</beans:bean>
+	
+	<context:component-scan base-package="kr.co.dev.tools.api" />
+	
+	<beans:bean id="viewResolver1" class="org.springframework.web.servlet.view.XmlViewResolver">
+  		<beans:property name="order" value="1"/>
+  		<beans:property name="location" value="/WEB-INF/views/view.xml"/>
+	</beans:bean>
+	
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" >
+	</beans:bean>	
+	
+	<interceptors>		
+			<beans:bean id="PersonalEvalationInterceptor" class="kr.co.dev.tools.api.personal.interceptor.PersonalEvalationInterceptor">
+			</beans:bean>
+	</interceptors>
+		
+</beans:beans>

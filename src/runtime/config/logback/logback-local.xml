@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<included scan="true" scanPeriod="2 seconds">
+
+	<!-- Appenders -->
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%-5level, %d{yyyy-MM-dd HH:mm:ss.SSS}, %-30class{0}|%-5line,
+				%msg%n</pattern>
+		</encoder>
+
+	</appender>
+
+	<!-- 날짜별 로그 : Debug Level -->
+	<appender name="dailyRollingFileDebug"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>debug</level>
+		</filter>
+
+		<file>D:/logs/KpcPaymentService_debug.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- 파일이 하루에 한개씩 생성된다 -->
+
+			<fileNamePattern>D:/logs/KpcPaymentService_debug.%d{yyyy-MM-dd}.log</fileNamePattern>
+
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%-5level, %d{yyyy-MM-dd HH:mm:ss.SSS}, %-30class{0}|%-5line,
+				%msg%n</pattern>
+		</encoder>
+
+	</appender>
+
+	<!-- 날짜별 로그 : Debug Level -->
+	<appender name="dailyRollingFileInfo"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>info</level>
+		</filter>
+		<file>D:/logs/KpcPaymentService_debug.log</file>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- 파일이 하루에 한개씩 생성된다 -->
+			<fileNamePattern>D:/logs/KpcPaymentService_debug.%d{yyyy-MM-dd}.log</fileNamePattern>
+
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%-5level, %d{yyyy-MM-dd HH:mm:ss.SSS}, %-30class{0}|%-5line,
+				%msg%n</pattern>
+		</encoder>
+
+	</appender>
+
+
+	<!-- Application Loggers -->
+	<logger name="kr.co.kpc.payment.api" level="debug" />
+
+	<!-- 3rdparty Loggers -->
+	<logger name="org.springframework.core" level="info" />
+
+	<logger name="org.springframework.beans" level="info" />
+
+	<logger name="org.springframework.context" level="info" />
+
+	<logger name="org.springframework.web" level="info" />
+
+	<root level="debug">
+		<appender-ref ref="console" />
+		<appender-ref ref="dailyRollingFileDebug" />
+		<appender-ref ref="dailyRollingFileInfo" />
+
+	</root>
+
+</included>

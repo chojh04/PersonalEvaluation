@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<settings>
+		<setting name="cacheEnabled" value="true" />
+		<setting name="lazyLoadingEnabled" value="false" />
+		<setting name="multipleResultSetsEnabled" value="true" />
+		<setting name="useColumnLabel" value="true" />
+		<setting name="useGeneratedKeys" value="false" />
+		<setting name="defaultExecutorType" value="SIMPLE" />
+		<setting name="defaultStatementTimeout" value="25000" />
+	</settings>
+	
+	
+	<typeAliases>		
+		<typeAlias alias="Employe" type="kr.co.dev.tools.api.personal.database.dao.Employe" />
+		<typeAlias alias="ProjectScore" type="kr.co.dev.tools.api.personal.database.dao.ProjectScore" />		
+		<typeAlias alias="ValueScore" type="kr.co.dev.tools.api.personal.database.dao.ValueScore" />
+		<typeAlias alias="PerformanceScore" type="kr.co.dev.tools.api.personal.database.dao.PerformanceScore" />
+		<typeAlias alias="ResultProjectScore" type="kr.co.dev.tools.api.personal.database.dao.ResultProjectScore" />
+		<typeAlias alias="ResultValueScore" type="kr.co.dev.tools.api.personal.database.dao.ResultValueScore" />
+		<typeAlias alias="ResultPerformanceScore" type="kr.co.dev.tools.api.personal.database.dao.ResultPerformanceScore" />
+	</typeAliases>
+	
+	<typeHandlers>
+		<!-- java.sql.Timestamp 를 java.util.Date 형으로 반환 -->
+		<typeHandler javaType="java.sql.Timestamp"
+			handler="org.apache.ibatis.type.DateTypeHandler" />
+		<typeHandler javaType="java.sql.Time"
+			handler="org.apache.ibatis.type.DateTypeHandler" />
+		<typeHandler javaType="java.sql.Date"
+			handler="org.apache.ibatis.type.DateTypeHandler" />
+	</typeHandlers>
+
+</configuration>

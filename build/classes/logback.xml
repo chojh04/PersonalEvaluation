@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<configuration scan="true" scanPeriod="5 seconds" debug="true">
+	<if condition='isDefined("spring.profiles.active")'>
+		<then>
+			<include resource="runtime/config/logback/logback-${spring.profiles.active}.xml" />
+		</then>
+	</if>
+	<include resource="runtime/config/logback/logback-real.xml" />
+</configuration>
